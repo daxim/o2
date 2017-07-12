@@ -1,4 +1,8 @@
-import {o2, ro, rw} from './lib/o2.es';
+import tap from 'tap';
+import {o2, ro, rw} from '../lib/o2.es';
+import util from 'util';
+
+tap.ok(o2, 'module exports');
 
 @o2
 class Foo {
@@ -11,9 +15,16 @@ class Foo {
 //  @around foo (orig, x) { console.log(orig); orig(x + 'you are awesome') }
 }
 
+tap.pass('class decorates');
+
 let name = "mst"; let age = 42;
 
 console.log(Foo);
+tap.is(
+    util.inspect(Foo).indexOf('[Function: Foo]'),
+    0,
+    'stringifies to orig class name'
+);
 
 try { new Foo } catch (e) { console.log("Error: " + e) };
 
