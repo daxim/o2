@@ -22,6 +22,10 @@ function o2 (orig) {
     }
   }
   o2constructor.prototype = orig.prototype;
+  Object.defineProperty(o2constructor, 'name', {
+    writable: true,
+    value: orig.name
+  });
   return o2constructor;
 }
 
