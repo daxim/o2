@@ -1,5 +1,3 @@
-import {filter as grep} from 'lodash';
-
 function o2 (orig) {
   if (!orig.prototype.hasOwnProperty('$o2$')) {
     return target;
@@ -7,10 +5,7 @@ function o2 (orig) {
   let attrs = orig.prototype.$o2$.attrs;
   function o2constructor (args = {}) {
     if (attrs.required.length) {
-      let missing = grep(
-        attrs.required,
-        (name) => !args.hasOwnProperty(name),
-      );
+      let missing = attrs.required.filter(name => !args.hasOwnProperty(name));
       if (missing.length) {
         throw "Missing required attributes: " + missing.join(', ');
       }
