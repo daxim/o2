@@ -27,21 +27,39 @@ tap.is(
 );
 
 try { new Foo } catch (e) { console.log("Error: " + e) };
+tap.throws(
+    () => new Foo,
+    'Missing required attributes: age',
+    'missing required attr throws'
+);
 
 let foo = new Foo({ name, age });
+tap.ok(foo, 'passing all attrs');
 
 let foo2 = new Foo({ age });
+tap.ok(foo2, 'passing required attrs');
 
 console.log(foo2.message());
+tap.is(foo2.message(), 'Hello Bob', 'default value for attr');
 
 console.log(foo);
 
 console.log(foo.message());
+tap.is(foo.message(), 'Hello mst', 'attr used in method');
 
+tap.is(foo2.age, 42, 'read accessor');
 foo2.age = 23;
+tap.is(foo2.age, 23, 'write accessor');
 
 console.log(foo2);
 
 try { foo.name = 'Joe' } catch (e) { console.log("Error: " + e) };
+tap.throws(
+    () => {foo.name = 'Joe'},
+    'write ro attr throws'
+);
 
 console.log(foo.foo());
+tap.is(foo.foo(), 'Hello undefined', 'no method argument');
+
+tap.end();

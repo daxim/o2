@@ -3,3 +3,5 @@ package.json needs proper metadata
 @around decorator not implemented
 
 orig.call is supposed to do something, but fails
+
+test 7 "default value for attr" fails
