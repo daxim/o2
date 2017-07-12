@@ -15,7 +15,7 @@ function o2 (orig) {
         throw "Missing required attributes: " + missing.join(', ');
       }
     }
-    orig.call(this, args);
+//    orig.call(this, args);
     for (let { name, writable } of attrs.specs) {
       let value = (name in args ? args[name] : this[name]);
       Object.defineProperty(this, name, {
