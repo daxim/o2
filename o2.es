@@ -66,7 +66,7 @@ class Foo {
 
   foo (x) { return "Hello" + x  }
 
-  @around foo (orig, x) { console.log(orig); orig(x + 'you are awesome') }
+//  @around foo (orig, x) { console.log(orig); orig(x + 'you are awesome') }
 }
 
 let name = "mst"; let age = 42;
